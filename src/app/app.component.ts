@@ -24,7 +24,7 @@ export class MyApp {
       this.pages = [
         { title: 'โปรไฟล์', component: "ProfilePage",icon:"md-person" },
         { title: 'สาขาทั้งหมด', component: "BranchMapsPage",icon:"ios-pin-outline" },
-        { title: 'ร้านทั้งหมด', component: "FoodAllPage",icon:"md-search" },
+        { title: 'บัตรสมาชิก', component: "MemberCardPage",icon:"md-search" },
         { title: 'ทำอะไรกินดี', component: "FoodAllPage",icon:"ios-restaurant" },
         { title: 'รีวิวร้านอาหาร', component: "ReviewerFoodPage" ,icon:"md-chatbubbles"},
         { title: 'วงล้อสุ่มกินอะไรดี', component: "RandomFoodPage",icon:"ios-create-outline" }
