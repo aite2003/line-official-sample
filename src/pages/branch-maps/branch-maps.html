@@ -6,17 +6,17 @@
 -->
 <ion-header persistent="true">
   <ion-navbar color="primary">
-    <ion-title>ค้นหาร้านอาหารใกล้คุณ</ion-title>
+    <ion-title>ค้นหาสาขา</ion-title>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
   </ion-navbar>
   <ion-toolbar mode="ios" color="primary" style="top:-1px">
     <ion-searchbar
-    [(ngModel)]="searchInput"
-    (ionInput)="getItems($event)"></ion-searchbar>
+    (keyup.enter)="searchBranch(searchInput)"
+    [(ngModel)]="searchInput"></ion-searchbar>
     <ion-buttons right>
-      <button ion-button icon-end icon-only (click)="gotoAdd()">
+      <button ion-button icon-end icon-only (click)="searchBranch(searchInput)">
         
         <ion-icon name="md-search"></ion-icon>
       </button>

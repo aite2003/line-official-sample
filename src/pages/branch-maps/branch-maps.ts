@@ -501,6 +501,16 @@ setTimeout(()=>{
 
 }
 
+
+searchBranch(searchText)
+{
+  this.page = this.get_data.filter((item) => {
+    return ((item.res_name.toLowerCase().indexOf(searchText.toLowerCase()) > -1) || 
+  (item.google_address.toLowerCase().indexOf(searchText.toLowerCase()) > -1));
+  
+  })
+}
+
   
   
 
