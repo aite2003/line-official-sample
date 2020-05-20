@@ -8,4 +8,39 @@
 
 <ion-content padding>
 
+	<ion-segment  class="SwipedTabs-tabs"  >
+		<ion-segment-button *ngFor='let tab of tabs ; let i = index ' value="IngoreMe" (click)="selectTab(i)"
+		[ngClass]='{ "SwipedTabs-activeTab" : ( this.SwipedTabsSlider  && ( this.SwipedTabsSlider.getActiveIndex() === i || (  tabs.length -1 === i&& this.SwipedTabsSlider.isEnd()))) }' >
+			{{tab}}
+		</ion-segment-button>
+	</ion-segment>
+
+	<!-- here is our dynamic line  "indicator"-->
+	<div id='indicator-about' class="SwipedTabs-indicatorSegment" [ngStyle]="{'width.%': (100/this.tabs.length)}"></div>
+
+	<ion-slides mode='md' #SwipedTabsSlider  (ionSlideDrag)="animateIndicator($event)"
+							(ionSlideWillChange)="updateIndicatorPosition()"
+							(ionSlideDidChange)="updateIndicatorPosition()"
+							(pan)="updateIndicatorPosition()"
+              [pager]="false"
+
+				>
+		<ion-slide>
+ 
+      <ion-card >
+        <ion-card-header>
+          test header
+        </ion-card-header>
+        <ion-card-content>
+          test content
+        </ion-card-content>
+      </ion-card>
+
+
+
+		</ion-slide>
+		<ion-slide>
+			<h1>Page 2 </h1>
+		</ion-slide>
+	</ion-slides>
 </ion-content>

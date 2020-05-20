@@ -1,3 +1,48 @@
 page-home {
 
+    ion-slide.swiper-slide {
+        align-items: flex-start;
+    }
+
+    .home-header{
+        position:absolute;
+        background:linear-gradient(180deg, rgba(90, 236, 255, 0.452) 0%, rgba(62, 223, 245, 0.452) 52%, rgba(8, 218, 246, 0) 92%);
+        height:200px;
+        width:100%;
+        z-index:-1;
+       // position: sticky;top: 0;left: 0;right: 0;z-index:9999;
+    }
+    .SwipedTabs-indicatorSegment
+    {
+   
+        -webkit-transition: 0.3s all;
+        -moz-transition:  0.3s all;
+        -o-transition:  0.3s all;
+        transition:  0.3s all;
+        transform-origin: top 0 left 0;
+        height: 3px;
+	    position: relative;
+	    top: -2px;
+        background-color: color($colors, primary) !important;
+  
+    }
+    .SwipedTabs-tabs ion-segment-button
+    {
+        
+    	border:none !important;
+    	color:gray!important;
+        background-color:rgba(255, 255, 255, 0)!important;
+        
+    }
+     .SwipedTabs-tabs ion-segment-button.SwipedTabs-activeTab
+    {
+        color:black !important;
+        
+    }
+    .SwipedTabs-tabs
+    {
+        
+    	border-bottom: solid 1px #e6e6e6  !important;
+    }
 }
+

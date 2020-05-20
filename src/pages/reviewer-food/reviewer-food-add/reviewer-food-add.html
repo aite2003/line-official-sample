@@ -1,0 +1,111 @@
+<!--
+  Generated template for the ReviewerFoodAddPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>สร้างรีวิวใหม่</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+   <div style="margin-top:30px">
+  <ion-card>
+    <ion-card-content>
+      <ion-label *ngIf="!res_name.status">ชื่อร้านอาหาร</ion-label>
+      <h2 *ngIf="res_name.status">ชื่อร้าน : {{res_name.name}}</h2>
+      <ion-input *ngIf="!res_name.status" type="text"  [(ngModel)]="res_name.name"></ion-input>
+    
+           </ion-card-content>
+    <ion-item>
+      <button *ngIf="!res_name.status" ion-button item-end (click)="editResname('save')">ตกลง</button>
+      <button *ngIf="res_name.status" ion-button item-end (click)="editResname('edit')">แก้ไข</button>
+            </ion-item>
+  </ion-card>
+
+  <ion-card>
+    <iframe *ngIf="res_location.googlemaps" width="100%" height="250" frameborder="0" style="margin-top:-80px;border:0"
+    [src]="res_location.googlemaps" allowfullscreen></iframe>
+
+    <ion-card-content>
+      <p *ngIf="res_location.address">{{res_location.address}}</p>
+      <ion-label *ngIf="!res_location.status">ปักหมุดร้านอาหาร</ion-label>
+      <button ion-button item-end block (click)="gotoPickOrigin()">เลือกบนแผนที่</button>
+           </ion-card-content>
+  </ion-card>
+
+<div *ngFor="let item of review_body;let i =index">
+  <ion-card *ngIf="item.type=='text'">
+    <ion-card-content>
+      <ion-label *ngIf="!item.status">ใส่ ข้อความ</ion-label>
+      <ion-textarea type="text" rows="10" maxLength="500" *ngIf="!item.status" [(ngModel)]="item.text"></ion-textarea>
+
+      <div *ngIf="item.status" [innerHTML]="item.text_with_format" >
+      </div>
+    </ion-card-content>
+    <ion-item>
+      <button ion-button item-end (click)="editText('delete',i)">ลบ</button>
+      <button *ngIf="!item.status" ion-button item-end (click)="editText('save',i)">ตกลง</button>
+      <button *ngIf="item.status" ion-button item-end (click)="editText('edit',i)">แก้ไข</button>
+            </ion-item>
+  </ion-card>
+
+  <ion-card *ngIf="item.type=='youtube'">
+    <iframe *ngIf="item.status" width="100%" height="315" [src]="item.full_link" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+    <ion-card-content>
+      <ion-label *ngIf="!item.status">ใส่ Youtube Link</ion-label>
+      <ion-input type="text" *ngIf="!item.status" [(ngModel)]="item.link"></ion-input>
+    
+           </ion-card-content>
+    <ion-item>
+      <button ion-button item-end (click)="editYoutube('delete',i)">ลบ</button>
+      <button *ngIf="!item.status" ion-button item-end (click)="editYoutube('save',i)">ตกลง</button>
+      <button *ngIf="item.status" ion-button item-end (click)="editYoutube('edit',i)">แก้ไข</button>
+            </ion-item>
+  </ion-card>
+
+  <ion-card *ngIf="item.type=='image'">
+    <img *ngIf="item.src" src="{{item.src}}"/>
+    <ion-card-content>
+      <ion-label *ngIf="!item.status">ใส่รูปภาพ</ion-label>
+      <button *ngIf="!item.status" ion-button item-end block (click)="onClickBtn(i)">เลือกรูปภาพ</button>
+      <input #file (change)="onFileChange()" type="file" style="display:none;" />
+    
+    </ion-card-content>
+    <ion-item>
+      <button ion-button item-end (click)="editImage('delete',i)">ลบ</button>
+      <button *ngIf="item.status" ion-button item-end (click)="editImage('edit',i)">แก้ไข</button>
+            </ion-item>
+  </ion-card>
+</div>
+  
+</div>
+
+
+
+  <ion-fab right top edge>
+    <button ion-fab color="secondary"><ion-icon name="md-add"></ion-icon></button>
+    <ion-fab-list side="left">
+      <button ion-fab color="secondary" (click)="addYoutube()"><ion-icon name="logo-youtube"></ion-icon></button>
+      <button ion-fab color="secondary" (click)="addImage()"><ion-icon name="md-images"></ion-icon></button>
+      <button ion-fab color="secondary" (click)="addText()"><ion-icon name="ios-list-outline"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>
+
+<ion-footer>
+  <ion-row>
+    <ion-col>
+      <button ion-button block (click)="saveDraft()" color="third">บันทึกร่าง</button>
+    </ion-col>
+    <ion-col>
+      <button ion-button block (click)="saveReview()">บันทึก</button>
+    </ion-col>
+  </ion-row>
+
+
+</ion-footer>

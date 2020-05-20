@@ -1,17 +1,295 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
-</ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+
+<ion-content (ionScroll)="isScrolling($event)">
+
+  <div class="home-header">
+
+  </div>
+  <div padding>
+    <h2>Welcome to Ionic!</h2>
+    <p>
+      This starter project comes with simple tabs-based layout for apps
+      that are going to primarily use a Tabbed UI.
+    </p>
+
+    <ion-slides mode='md'
+    slidesPerView="4.5" spaceBetween="-15"
+              [pager]="false"
+
+				>
+		<ion-slide>
+      <div>
+      <ion-card >
+        <ion-card-header>
+          test header
+        </ion-card-header>
+        <ion-card-content>
+          test content
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+		</ion-slide>
+		<ion-slide>
+      <div>
+        <ion-card >
+          <ion-card-header>
+            test header
+          </ion-card-header>
+          <ion-card-content>
+            test content
+          </ion-card-content>
+        </ion-card>
+     
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div>
+        <ion-card >
+          <ion-card-header>
+            test header
+          </ion-card-header>
+          <ion-card-content>
+            test content
+          </ion-card-content>
+        </ion-card>
+     
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div>
+        <ion-card >
+          <ion-card-header>
+            test header
+          </ion-card-header>
+          <ion-card-content>
+            test content
+          </ion-card-content>
+        </ion-card>
+     
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div>
+        <ion-card >
+          <ion-card-header>
+            test header
+          </ion-card-header>
+          <ion-card-content>
+            test content
+          </ion-card-content>
+        </ion-card>
+     
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div>
+        <ion-card >
+          <ion-card-header>
+            test header
+          </ion-card-header>
+          <ion-card-content>
+            test content
+          </ion-card-content>
+        </ion-card>
+     
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div>
+        <ion-card >
+          <ion-card-header>
+            test header
+          </ion-card-header>
+          <ion-card-content>
+            test content
+          </ion-card-content>
+        </ion-card>
+     
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div>
+        <ion-card >
+          <ion-card-header>
+            test header
+          </ion-card-header>
+          <ion-card-content>
+            test content
+          </ion-card-content>
+        </ion-card>
+     
+      </div>
+		</ion-slide>
+	</ion-slides>
+  </div>
+  
+  <div style="position: sticky;top: 0;left: 0;right: 0;z-index:9999;" padding>
+
+
+   
+
+
+	<ion-segment  class="SwipedTabs-tabs" *ngIf="headerShow" style="background-color:white">
+    
+		<ion-segment-button  *ngFor='let tab of tabs ; let i = index ' value="IngoreMe" (click)="selectTab(i)"
+		[ngClass]='{ "SwipedTabs-activeTab" : ( this.SwipedTabsSlider  && ( this.SwipedTabsSlider.getActiveIndex() === i || (  tabs.length -1 === i&& this.SwipedTabsSlider.isEnd()))) }' >
+			{{tab}}
+    </ion-segment-button>
+  </ion-segment>
+  <ion-segment  class="SwipedTabs-tabs"  *ngIf="!headerShow">
+    
+		<ion-segment-button  *ngFor='let tab of tabs ; let i = index ' value="IngoreMe" (click)="selectTab(i)"
+		[ngClass]='{ "SwipedTabs-activeTab" : ( this.SwipedTabsSlider  && ( this.SwipedTabsSlider.getActiveIndex() === i || (  tabs.length -1 === i&& this.SwipedTabsSlider.isEnd()))) }' >
+			{{tab}}
+    </ion-segment-button>
+  </ion-segment>
+  
+
+	<!-- here is our dynamic line  "indicator"-->
+	<div id='indicator-home' class="SwipedTabs-indicatorSegment" [ngStyle]="{'width.%': (100/this.tabs.length)}"></div>
+</div>
+	<ion-slides mode='md' #SwipedTabsSlider  (ionSlideDrag)="animateIndicator($event)"
+							(ionSlideWillChange)="updateIndicatorPosition()"
+							(ionSlideDidChange)="updateIndicatorPosition()"
+							(pan)="updateIndicatorPosition()"
+              [pager]="false"
+
+				>
+		<ion-slide>
+      <div>
+      <ion-card >
+        <ion-card-header>
+          test header
+        </ion-card-header>
+        <ion-card-content>
+          test content
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <div>
+      <ion-card >
+        <ion-card-header>
+          test header
+        </ion-card-header>
+        <ion-card-content>
+          test content
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <div>
+      <ion-card >
+        <ion-card-header>
+          test header
+        </ion-card-header>
+        <ion-card-content>
+          test content
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <div>
+      <ion-card >
+        <ion-card-header>
+          test header
+        </ion-card-header>
+        <ion-card-content>
+          test content
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <div>
+      <ion-card >
+        <ion-card-header>
+          test header
+        </ion-card-header>
+        <ion-card-content>
+          test content
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <div>
+      <ion-card >
+        <ion-card-header>
+          test header
+        </ion-card-header>
+        <ion-card-content>
+          test content
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <div>
+      <ion-card >
+        <ion-card-header>
+          test header
+        </ion-card-header>
+        <ion-card-content>
+          test content
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+		</ion-slide>
+		<ion-slide>
+      <div>
+        <ion-card >
+          <ion-card-header>
+            test header
+          </ion-card-header>
+          <ion-card-content>
+            test content
+          </ion-card-content>
+        </ion-card>
+      </div>
+      <div>
+        <ion-card >
+          <ion-card-header>
+            test header
+          </ion-card-header>
+          <ion-card-content>
+            test content
+          </ion-card-content>
+        </ion-card>
+      </div>
+      <div>
+        <ion-card >
+          <ion-card-header>
+            test header
+          </ion-card-header>
+          <ion-card-content>
+            test content
+          </ion-card-content>
+        </ion-card>
+      </div>
+      <div>
+        <ion-card >
+          <ion-card-header>
+            test header
+          </ion-card-header>
+          <ion-card-content>
+            test content
+          </ion-card-content>
+        </ion-card>
+      </div>
+      <div>
+        <ion-card >
+          <ion-card-header>
+            test header
+          </ion-card-header>
+          <ion-card-content>
+            test content
+          </ion-card-content>
+        </ion-card>
+      </div>
+      <div>
+        <ion-card >
+          <ion-card-header>
+            test header
+          </ion-card-header>
+          <ion-card-content>
+            test content
+          </ion-card-content>
+        </ion-card>
+      </div>
+		</ion-slide>
+	</ion-slides>
 </ion-content>

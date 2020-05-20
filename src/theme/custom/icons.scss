@@ -1,0 +1,36 @@
+ion-icon {
+    &[class*="custom-"] {
+       mask-size: contain;
+       mask-position: 50% 50%;
+       mask-repeat: no-repeat;
+  
+       width: 1em;
+       height: 1em;
+  
+    }
+    &[class*="nocolor-"] {
+      background: currentColor;
+   }
+    &[class*="color1-"] {
+      background: linear-gradient(#eee, rgb(168, 58, 58));
+   }
+  
+    &[class*="coin"] {
+  
+       mask-image: url("../assets/icon/coin.svg");
+   }
+   &[class*="edit"] {
+    mask-image: url("../assets/icon/edit.svg");
+  }
+  &[class*="profile"] {
+    mask-image: url("../assets/icon/user.svg");
+  }
+  &[class*="cat"] {
+    mask-image: url("../assets/icon/cat.svg");
+  }
+  
+  
+  
+  
+  
+  }

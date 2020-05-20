@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>SearchLocationPage</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid style="position: sticky;top: 0;background-color:white;left: 0;right: 0;z-index:9999;">
+    <ion-row>
+      <ion-col col-9>
+        <ion-label></ion-label>
+        <ion-input [(ngModel)]="searchText" placeholder="ค้นหา"></ion-input>
+      </ion-col>
+      <ion-col col-3>
+  <button block ion-button icon-end style="top:7px" (click)="searchList(searchText,'no')">ค้นหา   <ion-icon name="md-shuffle"></ion-icon></button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list>
+    <ion-card *ngIf="searchDat.length==0">
+
+      <ion-card-content text-center>
+        ไม่พบข้อมูล
+      </ion-card-content>
+    </ion-card>
+
+    <ion-item *ngFor="let item of searchDat">
+      <ion-thumbnail item-start>
+        <img src="./assets/imgs/logo.png">
+      </ion-thumbnail>
+      <h2 text-wrap>{{item.name}}</h2>
+      <p text-wrap>{{item.address}}</p>
+      <button ion-button clear item-end (click)="select(item.latlong)">เลือก</button>
+      <button ion-button clear item-end (click)="viewmaps(item.latlong,item.name)">ดูแผนที่</button>
+    </ion-item>
+
+    <ion-item *ngIf="finesearch">
+
+      <button ion-button block large (click)="searchList(searchText,'yes')">ค้นหาเพิ่มเติม</button>
+      <button ion-button block large (click)="goBack()">กลับหน้าปักหมุด</button>
+    </ion-item>
+   
+  </ion-list>
+
+</ion-content>

@@ -1,0 +1,145 @@
+<!--
+  Generated template for the RandomFoodPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>กินอะไรดี</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="state=='init'">
+
+    <ion-card-content>
+      <ion-row>
+        <ion-col>
+          <img src="./assets/icon/food-type.svg"/>
+          <button ion-button block (click)="selectTypeFunc('selectType')">สุ่มประเภทร้าน</button>
+        </ion-col>
+        <ion-col>
+          <img src="./assets/icon/food-menu.svg"/>
+          <button ion-button block (click)="selectTypeFunc('selectMenu')">สุ่มเมนู</button>
+        </ion-col>
+      
+      </ion-row>
+  </ion-card-content>
+  </ion-card>
+ 
+  <div #selectResType  *ngIf="state=='selectType'">
+
+  <ion-card>
+    <ion-card-content>
+   
+    <ion-item>
+      <ion-label floating>เลือกประเภทร้าน (เลือกให้ครบ8ข้อ)</ion-label> 
+      <ion-select style="border: 0px solid gray;" okText="ตกลง" cancelText="ยกเลิก" [(ngModel)]="selectType" multiple="true" interface="alert" (ionChange)="checkTypeSelect()">
+        <ion-option *ngFor="let item of foodType" value="{{item.index}}" >{{item.name}}</ion-option>
+      </ion-select>
+
+    </ion-item>
+    <ion-item>
+      <a ion-button block (click)="randomType()">สุ่ม</a>
+      </ion-item>
+  </ion-card-content>
+
+  </ion-card>
+ 
+
+  <ion-card *ngIf="8>selectType.length;">
+    <ion-card-content text-center>
+
+      เลือกให้ครบ 8 หัวข้อ
+          
+  </ion-card-content>
+  </ion-card>
+
+  <div  *ngIf="selectType.length>=8;">
+  <ion-icon name="md-navigate"  style="font-size:70px;position:absolute;z-index:9999;transform:rotate(150deg);left:80px;top:180px"></ion-icon>
+  	<div id="mainbox" class="mainbox" [ngStyle]="wheelWide()">
+    
+		<div id="box" class="box">
+			<div class="box1">
+				<span class="span0 span1"><b>{{foodType[selectType[0]].name}}</b></span>
+				<span class="span0 span2"><b>{{foodType[selectType[1]].name}}</b></span>
+				<span class="span0 span3"><b>{{foodType[selectType[2]].name}}</b></span>
+        <span class="span0 span4"><b>{{foodType[selectType[3]].name}}</b></span>
+ 
+			</div>
+			<div class="box2">
+      
+        <span class="span0 span5"><b>{{foodType[selectType[4]].name}}</b></span>
+				<span class="span0 span6"><b>{{foodType[selectType[5]].name}}</b></span>
+        <span class="span0 span7"><b>{{foodType[selectType[6]].name}}</b></span>
+        <span class="span0 span8"><b>{{foodType[selectType[7]].name}}</b></span>
+
+			</div>
+		</div>
+
+		<button class="spin" tapable (tap)="randomSpin()">หมุน</button>
+  </div>
+</div>
+</div>
+
+
+<div #selectResType  *ngIf="state=='selectMenu'">
+
+  <ion-card>
+    <ion-card-content>
+   
+    <ion-item>
+      <ion-label floating>เลือกเมนู (เลือกให้ครบ8ข้อ)</ion-label> 
+      <ion-select style="border: 0px solid gray;" okText="ตกลง" cancelText="ยกเลิก" [(ngModel)]="selectMenu" multiple="true" interface="alert" (ionChange)="checkMenuSelect()">
+        <ion-option *ngFor="let item of foodMenu" value="{{item.index}}" >{{item.name}}</ion-option>
+      </ion-select>
+
+    </ion-item>
+    <ion-item>
+      <a ion-button block (click)="randomMenu()">สุ่ม</a>
+      </ion-item>
+  </ion-card-content>
+
+  </ion-card>
+ 
+
+  <ion-card *ngIf="8>selectMenu.length;">
+    <ion-card-content text-center>
+
+      เลือกให้ครบ 8 หัวข้อ
+          
+  </ion-card-content>
+  </ion-card>
+
+  <div  *ngIf="selectMenu.length>=8;">
+  <ion-icon name="md-navigate"  style="font-size:70px;position:absolute;z-index:9999;transform:rotate(150deg);left:80px;top:180px"></ion-icon>
+  	<div id="mainbox" class="mainbox" [ngStyle]="wheelWide()">
+    
+		<div id="box" class="box">
+			<div class="box1">
+				<span class="span0 span1"><b>{{foodMenu[selectMenu[0]].name}}</b></span>
+				<span class="span0 span2"><b>{{foodMenu[selectMenu[1]].name}}</b></span>
+				<span class="span0 span3"><b>{{foodMenu[selectMenu[2]].name}}</b></span>
+        <span class="span0 span4"><b>{{foodMenu[selectMenu[3]].name}}</b></span>
+ 
+			</div>
+			<div class="box2">
+      
+        <span class="span0 span5"><b>{{foodMenu[selectMenu[4]].name}}</b></span>
+				<span class="span0 span6"><b>{{foodMenu[selectMenu[5]].name}}</b></span>
+        <span class="span0 span7"><b>{{foodMenu[selectMenu[6]].name}}</b></span>
+        <span class="span0 span8"><b>{{foodMenu[selectMenu[7]].name}}</b></span>
+
+			</div>
+		</div>
+
+		<button class="spin" tapable (tap)="randomSpin()">หมุน</button>
+  </div>
+</div>
+</div>
+
+</ion-content>

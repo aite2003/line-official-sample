@@ -1,0 +1,10 @@
+page-start {
+    .in-header{
+        position:absolute;
+        background:linear-gradient(180deg, rgba(0, 195, 255, 0.452) 0%, rgba(62, 239, 245, 0.452) 52%, rgba(8, 246, 246, 0) 92%);
+        height:200px;
+        width:100%;
+        z-index:-1;
+       // position: sticky;top: 0;left: 0;right: 0;z-index:9999;
+    }
+}

@@ -1,0 +1,98 @@
+<ion-header no-border>
+    <ion-navbar mode="ios" color="navbar">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+    <ion-title mode="ios" > Photocrop</ion-title>
+    
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+    <ion-grid >
+        <ion-row justify-content-center align-items-center>
+          <ion-col col-12 col-sm12 col-md-12 col-lg-9 col-xl-6 >
+
+
+
+
+  <ion-card>
+      <ion-row *ngIf="imgBase64">
+      <ion-col col-4>
+        <button ion-button block outline icon-left color="primary" (click)="zoom(true)">
+          <ion-icon name="add"></ion-icon> Zoom
+        </button>
+      </ion-col>
+      <ion-col col-4>
+        <button ion-button block outline icon-left color="primary" (click)="zoom(false)">
+          <ion-icon name="remove"></ion-icon> Zoom
+        </button>
+      </ion-col>
+      <ion-col col-4>
+        <button ion-button block outline icon-left (click)="rotate()">
+          <ion-icon name="refresh"></ion-icon> 90 deg
+        </button>
+      </ion-col>
+      <ion-col col-2>
+        <button ion-button block clear (click)="scaleX()">
+          Flip X
+        </button>
+      </ion-col>
+      <ion-col col-2>
+        <button ion-button block clear (click)="scaleY()">
+          Flip Y
+        </button>
+      </ion-col>
+    
+      <ion-col col-2>
+        <button ion-button clear block icon-only (click)="move(0, -10)">
+          <ion-icon name="arrow-round-up"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-2>
+        <button ion-button clear block icon-only (click)="move(0, 10)">
+          <ion-icon name="arrow-round-down"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-2>
+        <button ion-button clear block icon-only (click)="move(-10, 0)">
+          <ion-icon name="arrow-round-back"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-2>
+        <button ion-button clear block icon-only (click)="move(10, 0)">
+          <ion-icon name="arrow-round-forward"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+    
+    </ion-card>
+
+
+
+
+
+
+</ion-col>
+</ion-row>
+
+</ion-grid>
+
+<ion-grid >
+    <ion-row justify-content-center align-items-center>
+      <ion-col col-12 col-sm12 col-md-12 col-lg-9 col-xl-6 >
+        
+<angular-cropper #angularCropper style="pointer-events:none;" [cropperOptions]="cropperOptions" [imageUrl]="imgBase64" *ngIf="imgBase64"></angular-cropper>
+
+</ion-col>
+</ion-row>
+
+</ion-grid>
+<ion-fab right bottom>
+  
+  <button ion-button color="fab" (click)="save()" round icon-end> save <ion-icon name="custom-ios-save"  ></ion-icon></button>
+  
+</ion-fab>
+
+</ion-content>

@@ -1,0 +1,53 @@
+page-res-user-review {
+    .home-header-top{
+        position:absolute;
+        background:linear-gradient(180deg, rgba(255, 255, 255, 0.767) 0%, rgba(255, 255, 255, 0.452) 52%, rgba(8, 218, 246, 0) 92%);
+        height:100px;
+        width:100%;
+        z-index:-2;
+       // position: sticky;top: 0;left: 0;right: 0;z-index:9999;
+    }
+    .home-header-middle{
+        position:absolute;
+         height:100px;
+        width:100%;
+        z-index:-3;
+       // position: sticky;top: 0;left: 0;right: 0;z-index:9999;
+    }
+    .home-header{
+        position:absolute;
+        background:linear-gradient(180deg, rgba(90, 236, 255, 0.452) 0%, rgba(62, 223, 245, 0.452) 52%, rgba(8, 218, 246, 0) 92%);
+        height:100px;
+        width:100%;
+        z-index:-4;
+       // position: sticky;top: 0;left: 0;right: 0;z-index:9999;
+    }
+
+
+    .ion-page{
+   
+        top:0px;
+        }
+    .header{
+
+        top:50px;
+        }
+    .toolbar{
+
+            top:0px;
+            }
+            .content{
+
+background-color: darken($color: #00000077, $amount: 0);
+                }
+    .scroll-content{
+        border-radius: 20px 20px 0px 0px;
+     top:50px;
+     }
+    
+    .fixed-content{
+        border-radius: 20px 20px 0px 0px;
+        background-color: white;
+     top:50px;
+     }
+}

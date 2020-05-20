@@ -1,1 +1,22 @@
-<ion-nav [root]="rootPage"></ion-nav>
+
+    <ion-menu persistent="false" [content]="content" side="left" class="menu" style="background-color:rgb(189, 3, 80)">
+        <ion-content class="sidebar-menu" style="background-color:rgb(189, 3, 80)">
+          <ion-row>
+            <ion-col class="cover"></ion-col>
+          </ion-row>
+          <ion-row class="img-name-row">
+            <ion-col text-center col>
+              <img  class="user-img" style="width:150px" src="./assets/imgs/Logo.png"/>
+            </ion-col>
+          </ion-row>
+          <h2 ion-text text-center color="light" class="animated slow1 infinite fadeInUpBounce4 user-name"> 
+            <strong>Food </strong> Mee
+          </h2>
+          <button menuClose class="menu-item" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" style="color:white;background-color:rgb(189, 3, 80)">
+            <ion-icon name="{{p.icon}}" item-left></ion-icon>
+            {{p.title}}
+          </button>
+        </ion-content>
+      </ion-menu>
+      
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false" [ngStyle]="screenWidth()"></ion-nav>

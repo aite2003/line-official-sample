@@ -1,0 +1,79 @@
+<!--
+  Generated template for the ViewTaxiPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>เรียกแท็กซี่ ส่งผู้โดยสาร</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+<ion-card>
+  <ion-card-content>
+    <ion-grid style="padding-bottom:200px" >
+      <ion-row justify-content-center align-items-center>
+        <ion-col col-12 col-sm12 col-md-12 col-lg-9 col-xl-6 >
+            <ion-item-group>
+                <ion-list-header mode="ios">
+                    ข้อมูลผู้เรียก
+                  </ion-list-header>
+
+<ion-item>
+    <ion-label stacked>ชื่อผู้โดยสาร</ion-label>
+    <ion-input type="text" [(ngModel)]="input.pass_name"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>ช่วงเวลา</ion-label>
+    <ion-select  [(ngModel)]="input.job_type" interface="popover">
+      <ion-option value="now">ทันที</ion-option>
+      <ion-option value="then">เลือกเวลา</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item *ngIf="input.job_type=='then'">
+    <ion-label stacked>เลือกเวลา</ion-label>
+    <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="input.pick_time"></ion-datetime>
+
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>เบอร์โทร</ion-label>
+    <ion-input type="text" type="tel" pattern="\d*"  [(ngModel)]="input.pass_tel"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-row>
+      <ion-col>
+        <button ion-button full icon-end (click)="pinLocation('pick')">เลือกจุดรับ   <ion-icon name="map"></ion-icon></button>
+      </ion-col>
+      <ion-col>
+        <button ion-button full icon-end (click)="pinLocation('send')">เลือกจุดส่ง <ion-icon name="map"></ion-icon></button>
+      </ion-col>
+    </ion-row>
+
+  </ion-item>
+
+  <ion-item>
+    <h3>  <ion-icon name="home"></ion-icon> จุดรับ : {{pickLocation}} </h3>
+  </ion-item>
+  <ion-item>
+    <h3>  <ion-icon name="flag"></ion-icon> จุดส่ง : {{sendLocation}} </h3>
+  </ion-item>
+
+
+
+</ion-item-group>
+<ion-item>
+<button ion-button large full (click)="saveNewJob()">ยืนยัน</button>
+</ion-item>
+
+</ion-col>
+      </ion-row>
+</ion-grid>
+   
+
+  
+  </ion-card-content>
+
+</ion-card>
+</ion-content>
