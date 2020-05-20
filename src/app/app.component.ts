@@ -25,7 +25,7 @@ export class MyApp {
 
       this.pages = [
         { title: 'โปรไฟล์', component: "ProfilePage",icon:"md-person" },
-        { title: 'ร้านอาหารใกล้คุณ', component: "FoodMapsPage",icon:"ios-pin-outline" },
+        { title: 'สาขาใกล้คุณ', component: "FoodMapsPage",icon:"ios-pin-outline" },
         { title: 'ร้านทั้งหมด', component: "FoodAllPage",icon:"md-search" },
         { title: 'ทำอะไรกินดี', component: "FoodAllPage",icon:"ios-restaurant" },
         { title: 'รีวิวร้านอาหาร', component: "ReviewerFoodPage" ,icon:"md-chatbubbles"},
