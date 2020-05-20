@@ -30,7 +30,7 @@ export class BranchMapsPage {
   username:any;
   cus_location:any;
   url="https://taxi-delivery.com/api-foodmee/";
-
+  searchInput:any;
 
   input:any={lat:"",lng:"",tel:""};
   myMarker:any;
@@ -113,7 +113,7 @@ page_count = 0;
 
 
 
-    //this.maps.Ui.DPad.visible(false);
+    this.maps.Ui.DPad.visible(false);
      //this.maps.Ui.Zoombar.visible(false);
      this.maps.Ui.Geolocation.visible(false);
      this.maps.Ui.Toolbar.visible(false);
@@ -145,11 +145,12 @@ page_count = 0;
     this.maps.Overlays.add(marker);
     this.maps.location(latlon, true);
         /* End For test only */
-      this.resList();
+
+      this.branchList();
 
   }
 
-  resList()
+  branchList()
    {
      let lat=this.cus_location.split(",")[0];
      let long=this.cus_location.split(",")[1];
@@ -168,26 +169,14 @@ page_count = 0;
        //  console.log(this.get_data);
          this.get_data.forEach((item)=>{
 
-          if(item.cover_photo1)
-          {
-            item.photo=this.url+item.cover_photo1;
+
             this.resPos.push({lat:parseFloat(item.res_lat), lon:parseFloat(item.res_long),  
-               info:'<ion-grid><ion-row><ion-col> <img style="width:80px" src="'+item.photo+'"></ion-col><ion-col><b>'+item.res_name+'</b> </ion-col></ion-row><ion-row>'+item.google_address+'<button style="background-color:rgb(189, 3, 80);color:white;padding:10px;border-radius:10px">'+item.res_tel+'</button></ion-row></ion-grid>',
+               info:'<b>'+item.res_name+'</b><br>'+item.google_address+'<br><br><br><a style="background-color:rgb(189, 3, 80);color:white;padding:10px;border-radius:10px" href="https://www.google.com/maps/dir//'+item.res_lat+','+item.res_long+'">เปิดแผนที่</a><br><br>',
             title:item.res_name, 
            detail:item.res_tel,
            status:item.google_address})
-  
-          }
-          else
-          {
-            item.photo="./assets/imgs/nophoto.png";
-            this.resPos.push({lat:parseFloat(item.res_lat), lon:parseFloat(item.res_long), 
-            info:'<ion-grid><ion-row><ion-col> <img style="width:80px" src="'+item.photo+'"></ion-col><ion-col><b>'+item.res_name+'</b> </ion-col></ion-row><ion-row>'+item.google_address+'<button style="background-color:rgb(189, 3, 80);color:white;padding:10px;border-radius:10px">'+item.res_tel+'</button></ion-row></ion-grid>',
-  
-          title:item.res_name, 
-            detail:item.res_tel,
-            status:item.google_address}) 
-          }
+
+          
           if(item.cover_photo1)
           item.cover_photo1=this.url+item.cover_photo1;
           if(item.cover_photo2)
@@ -290,7 +279,7 @@ getCurrentLocation()
 this.maps.Overlays.add(marker);
 this.maps.location(latlon, true);
 
-this.resList();
+this.branchList();
 //console.log(resolve);
   }).catch(()=>{
 
@@ -309,7 +298,7 @@ this.resList();
 this.maps.Overlays.add(marker);
 this.maps.location(latlon, true);
 
-this.resList();
+this.branchList();
   });
 
 }
@@ -490,6 +479,26 @@ doInfinite(infiniteScroll) {
 ionViewWillLeave()
 {
   console.log("viewWillLeave")
+}
+
+selectBranch(lat,long,index)
+{
+
+  let latlon={lat:lat,lon:long};
+  var popup1 = new longdo.Popup({ lon: long, lat: lat },
+    {
+      title: this.page[index].res_name,
+      detail: this.page[index].google_address+'<br><br><br><a style="background-color:rgb(189, 3, 80);color:white;padding:10px;border-radius:10px" href="https://www.google.com/maps/dir//'+lat+','+long+'">เปิดแผนที่</a><br><br>',
+      size: { width: 100},
+      closable: true
+    });
+
+this.maps.location(latlon, true);
+this.maps.zoom( 17, true);
+setTimeout(()=>{
+  this.maps.Overlays.add(popup1);
+   },500);
+
 }
 
   

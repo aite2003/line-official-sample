@@ -12,31 +12,28 @@
     </button>
   </ion-navbar>
   <ion-toolbar mode="ios" color="primary" style="top:-1px">
-    <ion-segment [(ngModel)]="mode" color="white">
-      <ion-segment-button value="maps" (click)="reInitMaps()">
-        <ion-icon name="md-map"></ion-icon>
-      </ion-segment-button>
-      <ion-segment-button value="list">
-        <ion-icon name="md-car"></ion-icon>
-      </ion-segment-button>
-      <ion-segment-button value="card">
-        <ion-icon name="ios-radio-outline"></ion-icon>
-      </ion-segment-button>
-
-    </ion-segment>
+    <ion-searchbar
+    [(ngModel)]="searchInput"
+    (ionInput)="getItems($event)"></ion-searchbar>
+    <ion-buttons right>
+      <button ion-button icon-end icon-only (click)="gotoAdd()">
+        
+        <ion-icon name="md-search"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content persistent="true">
 
 
-  <div [ngSwitch]="mode" style="height:100%">
-      <ion-card  *ngSwitchCase="'maps'" style="height:100%" #map>
-      </ion-card>
-    <div *ngSwitchCase="'list'">
+
+      <div style="height:50%;position: sticky;top: 0;left: 0;right: 0;z-index:9999;" #map>
+      </div>
+    <div>
       <ion-list>
 
-        <ion-item *ngFor="let item of page;let i = index">
+        <ion-item *ngFor="let item of page;let i = index" (click)="selectBranch(item.res_lat,item.res_long,i)">
           <ion-thumbnail item-start>
             <img src="{{item.photo}}">
           </ion-thumbnail>
@@ -57,101 +54,9 @@
     </div>
 
 
-    <div *ngSwitchCase="'card'">
-      <ion-list class="post-list">
-        <ion-card *ngFor="let item of page let i = index">
-          <ion-item>
-            <ion-avatar item-start>
-              <img src="./assets/imgs/MeeLogo.svg" />
-            </ion-avatar>
-    
-            <ion-col>
-              <p class="post-author">{{ item.res_name }}</p>
-    
-              <ion-row>
-                <ion-note>{{item.distance|number}} กิโลเมตร</ion-note>
-                <ion-icon style="padding-left:10px" name="md-globe"></ion-icon>
-              </ion-row>
-            </ion-col>
-    
-            <button class="more-button" ion-button clear icon-only item-end (click)="presentPopover($event,item.res_tel,item.lat_long)">
-              <ion-icon name="ios-more"></ion-icon>
-            </button>
-          </ion-item>
-    
-          <ion-card-content>
-            <p>{{item.google_address}}</p>
-          </ion-card-content>
-
-          <ion-grid>
-            <ion-row>
-      
-              <ion-col col-4 *ngIf="item.cover_photo1"><img src="{{item.cover_photo1}}" (click)=" openModal(item,0)" /></ion-col>
-              <ion-col col-4 *ngIf="!item.cover_photo1"><img src="./assets/imgs/nophoto.png" /></ion-col>
-      
-              <ion-col col-4 *ngIf="item.cover_photo2"><img src="{{item.cover_photo2}}" (click)=" openModal(item,1)" /></ion-col>
-              <ion-col col-4 *ngIf="!item.cover_photo2"><img src="./assets/imgs/nophoto.png" /></ion-col>
-      
-              <ion-col col-4 *ngIf="item.cover_photo3"><img src="{{item.cover_photo3}}" (click)=" openModal(item,2)" /></ion-col>
-              <ion-col col-4 *ngIf="!item.cover_photo3"><img src="./assets/imgs/nophoto.png" /></ion-col>
-            </ion-row>
-            <ion-row>
-      
-              <ion-col col-6 *ngIf="item.cover_photo4"><img src="{{item.cover_photo4}}" (click)=" openModal(item,3)" /></ion-col>
-              <ion-col col-6 *ngIf="!item.cover_photo4"><img src="./assets/imgs/nophoto.png"/></ion-col>
-      
-              <ion-col col-6 *ngIf="item.cover_photo5"><img src="{{item.cover_photo5}}" (click)=" openModal(item,4)" /></ion-col>
-              <ion-col col-6 *ngIf="!item.cover_photo5"><img src="./assets/imgs/nophoto.png"/></ion-col>
-            </ion-row>
-          </ion-grid>
-
-
-          <ion-row style="margin-top: 10px;">
-            <ion-col col-4>
-            </ion-col>
-    
-            <ion-col col-8 text-end>
-              <p (click)="showPostComments(item)">{{item.review_amount}} ความคิดเห็น • 0 แชร์</p>
-            </ion-col>
-          </ion-row>
-    
-          <ion-row class="like-commment-share-row">
-            <ion-col center text-center>
-              <button class="like-button" ion-button icon-only clear tapable (click)="like(i,item.id)" >
-                <ion-icon *ngIf="!item.isLiked" name="ios-thumbs-up-outline"></ion-icon>
-                <ion-icon *ngIf="item.isLiked" class="animated slow1 infinite fadeInUpBounce4" name="ios-thumbs-up"></ion-icon>
-                <p>ชอบ</p>
-              </button>
-            </ion-col>
-    
-            <ion-col center text-center>
-              <button ion-button icon-only clear tapable (click)="gotoUserReview(item.res_id,item.res_name,item.cover_photo1)">
-                <ion-icon name="ios-text-outline"></ion-icon>
-                <p>ความคิดเห็น</p>
-              </button>
-            </ion-col>
-    
-            <ion-col center text-center>
-              <button ion-button icon-only clear>
-                <ion-icon name="ios-undo-outline"></ion-icon>
-                <p>แชร์</p>
-              </button>
-            </ion-col>
-          </ion-row>
-        </ion-card>
-      </ion-list>
-        
-  <ion-infinite-scroll  *ngIf="hide_loading==false" (ionInfinite)="doInfinite($event)">
-    <ion-infinite-scroll-content      loadingSpinner="ios"
-    loadingText="กำลังโหลด..."></ion-infinite-scroll-content>
-  </ion-infinite-scroll>
-    </div>
-
-
-    <ion-fab *ngSwitchCase="'maps'" right bottom>
+    <ion-fab right top>
       <button ion-fab color="primary" (click)="reInitLocation()"><ion-icon name="ios-ionic-outline" ></ion-icon></button>
     </ion-fab>
-  </div>
 
 
 </ion-content>
